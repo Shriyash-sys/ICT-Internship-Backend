@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IctController;
 use App\Http\Controllers\LoginController;
 
 Route::get('/user', function (Request $request) {
@@ -13,7 +14,13 @@ Route::post('/register/candidate', [LoginController::class, 'CandidateRegister']
 
 Route::post('/login/candidate', [LoginController::class, 'CandidateLogin']);
 
+Route::post('/register/recruiter', [LoginController::class, 'RecruiterRegister']);
+
+Route::post('/login/recruiter', [LoginController::class, 'RecruiterLogin']);
+
 Route::middleware(['auth:sanctum'])->group(function() {
     
     Route::get('/logout/{id}', [LoginController::class, 'CandidateLogout']);
+
+    Route::post('/recruiter/company-info/{id}', [IctController::class, 'companyInfo'])->name('company.info');
 });

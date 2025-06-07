@@ -42,6 +42,13 @@ return [
         ],
     ],
 
+    'guards' => [
+        'recruiter' => [
+            'driver' => 'session',
+            'provider' => 'recruiters',
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -69,6 +76,13 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+
+    'providers' => [
+        'recruiters' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Recruiter::class,
+        ],
     ],
 
     /*
