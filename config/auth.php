@@ -40,14 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-    ],
-
-    'guards' => [
+    
         'recruiter' => [
             'driver' => 'session',
             'provider' => 'recruiters',
         ],
+    
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -76,13 +80,16 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
-
-    'providers' => [
+    
         'recruiters' => [
             'driver' => 'eloquent',
             'model' => App\Models\Recruiter::class,
         ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ]
     ],
 
     /*

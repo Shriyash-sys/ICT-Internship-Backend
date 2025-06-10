@@ -23,4 +23,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/logout/{id}', [LoginController::class, 'CandidateLogout']);
 
     Route::post('/recruiter/company-info/{id}', [IctController::class, 'companyInfo'])->name('company.info');
+
+    Route::get('/recruiter/company-info', [IctController::class, 'company'])->name('company.view');
+
+    Route::post('/recruiter/vacancy/{id}', [IctController::class, 'postVacancy']);
 });

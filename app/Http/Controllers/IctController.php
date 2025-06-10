@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 class IctController extends Controller
@@ -62,6 +63,39 @@ class IctController extends Controller
             'success' => true,
             'message' => 'Company information saved successfully.',
             'data' => $company,
+        ], 201);
+    }
+
+    public function postVacancy(Request $request)
+    {
+        $validated = $request->validate([
+            'position_name' => 'required|string|max:255',
+            'category' => 'required|string|in:internship,job',
+            'location' => 'required|string|max:255',
+            'experience' => 'required|string|max:255',
+            'stipend' => 'nullable|string|max:255',
+            'openings' => 'required|integer|min:1',
+            'application_deadline' => 'required|date',
+            'description' => 'required|string|max:2000',
+            'responsibility' => 'nullable|string|max:2000',
+            'requirement' => 'nullable|string|max:2000',
+            'skills' => 'nullable|string|max:2000',
+            'seo_title' => 'required|string|max:255',
+            'seo_description' => 'nullable|string|max:2000',
+            'seo_image' => 'nullable|image|max:2048', // 2MB max
+        ]);
+
+        if ($request->hasFile('seo_image')) {
+            $validated['seo_image'] = $request->file('seo_image')->store('seo_images', 'public');
+        }
+
+        $vacancy = new Vacancy($validated);
+        $vacancy->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Vacancy posted successfully.',
+            'data' => $validated,
         ], 201);
     }
 }
