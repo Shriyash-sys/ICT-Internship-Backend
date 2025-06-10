@@ -27,4 +27,6 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/recruiter/company-info', [IctController::class, 'company'])->name('company.view');
 
     Route::post('/recruiter/vacancy/{id}', [IctController::class, 'postVacancy']);
+
+    Route::get('/recruiter/vacancies/{id}', [IctController::class, 'showVacancies']);
 });

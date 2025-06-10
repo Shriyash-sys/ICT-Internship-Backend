@@ -98,4 +98,13 @@ class IctController extends Controller
             'data' => $validated,
         ], 201);
     }
+
+    public function showVacancies()
+    {
+        $vacancies = Vacancy::all();
+        return response()->json([
+            'success' => true,
+            'data' => $vacancies,
+        ]);
+    }
 }
